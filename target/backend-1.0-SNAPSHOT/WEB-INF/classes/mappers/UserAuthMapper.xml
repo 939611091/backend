@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.backend.dao.UserAuthMapper">
+  <resultMap id="BaseResultMap" type="com.backend.entity.UserAuth">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="identityType" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="identifier" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="credential" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userId, identityType, identifier, credential
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_auth
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_auth
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.backend.entity.UserAuth">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_auth (userId, identityType, identifier, 
+      credential)
+    values (#{userid,jdbcType=INTEGER}, #{identitytype,jdbcType=VARCHAR}, #{identifier,jdbcType=VARCHAR}, 
+      #{credential,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.backend.entity.UserAuth">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_auth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="identitytype != null">
+        identityType,
+      </if>
+      <if test="identifier != null">
+        identifier,
+      </if>
+      <if test="credential != null">
+        credential,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="identitytype != null">
+        #{identitytype,jdbcType=VARCHAR},
+      </if>
+      <if test="identifier != null">
+        #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="credential != null">
+        #{credential,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.backend.entity.UserAuth">
+    update user_auth
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="identitytype != null">
+        identityType = #{identitytype,jdbcType=VARCHAR},
+      </if>
+      <if test="identifier != null">
+        identifier = #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="credential != null">
+        credential = #{credential,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.backend.entity.UserAuth">
+    update user_auth
+    set userId = #{userid,jdbcType=INTEGER},
+      identityType = #{identitytype,jdbcType=VARCHAR},
+      identifier = #{identifier,jdbcType=VARCHAR},
+      credential = #{credential,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

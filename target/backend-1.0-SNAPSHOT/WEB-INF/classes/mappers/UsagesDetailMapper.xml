@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.backend.dao.UsagesDetailMapper">
+  <resultMap id="BaseResultMap" type="com.backend.entity.UsagesDetail">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="usagesId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="reasonId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="dose" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, usagesId, reasonId, name, dose
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from usages_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from usages_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.backend.entity.UsagesDetail">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into usages_detail (usagesId, reasonId, name, 
+      dose)
+    values (#{usagesid,jdbcType=INTEGER}, #{reasonid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{dose,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.backend.entity.UsagesDetail">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into usages_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="usagesid != null">
+        usagesId,
+      </if>
+      <if test="reasonid != null">
+        reasonId,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="dose != null">
+        dose,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="usagesid != null">
+        #{usagesid,jdbcType=INTEGER},
+      </if>
+      <if test="reasonid != null">
+        #{reasonid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dose != null">
+        #{dose,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.backend.entity.UsagesDetail">
+    update usages_detail
+    <set>
+      <if test="usagesid != null">
+        usagesId = #{usagesid,jdbcType=INTEGER},
+      </if>
+      <if test="reasonid != null">
+        reasonId = #{reasonid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dose != null">
+        dose = #{dose,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.backend.entity.UsagesDetail">
+    update usages_detail
+    set usagesId = #{usagesid,jdbcType=INTEGER},
+      reasonId = #{reasonid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      dose = #{dose,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

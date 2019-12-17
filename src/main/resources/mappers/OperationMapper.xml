@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.backend.dao.OperationMapper">
+  <resultMap id="BaseResultMap" type="com.backend.entity.Operation">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gardenId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="weatherId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="periodId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="time" javaType="java.util.Date" jdbcType="TIME" />
+      <arg column="date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="lastModified" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="created" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remarks" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gardenId, weatherId, periodId, time, date, lastModified, created, remarks
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from operation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from operation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.backend.entity.Operation">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into operation (gardenId, weatherId, periodId, 
+      time, date, lastModified, 
+      created, remarks)
+    values (#{gardenid,jdbcType=INTEGER}, #{weatherid,jdbcType=INTEGER}, #{periodid,jdbcType=INTEGER}, 
+      #{time,jdbcType=TIME}, #{date,jdbcType=DATE}, #{lastmodified,jdbcType=TIMESTAMP}, 
+      #{created,jdbcType=TIMESTAMP}, #{remarks,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.backend.entity.Operation">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into operation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gardenid != null">
+        gardenId,
+      </if>
+      <if test="weatherid != null">
+        weatherId,
+      </if>
+      <if test="periodid != null">
+        periodId,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="lastmodified != null">
+        lastModified,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gardenid != null">
+        #{gardenid,jdbcType=INTEGER},
+      </if>
+      <if test="weatherid != null">
+        #{weatherid,jdbcType=INTEGER},
+      </if>
+      <if test="periodid != null">
+        #{periodid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIME},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="lastmodified != null">
+        #{lastmodified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.backend.entity.Operation">
+    update operation
+    <set>
+      <if test="gardenid != null">
+        gardenId = #{gardenid,jdbcType=INTEGER},
+      </if>
+      <if test="weatherid != null">
+        weatherId = #{weatherid,jdbcType=INTEGER},
+      </if>
+      <if test="periodid != null">
+        periodId = #{periodid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIME},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="lastmodified != null">
+        lastModified = #{lastmodified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.backend.entity.Operation">
+    update operation
+    set gardenId = #{gardenid,jdbcType=INTEGER},
+      weatherId = #{weatherid,jdbcType=INTEGER},
+      periodId = #{periodid,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIME},
+      date = #{date,jdbcType=DATE},
+      lastModified = #{lastmodified,jdbcType=TIMESTAMP},
+      created = #{created,jdbcType=TIMESTAMP},
+      remarks = #{remarks,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>
