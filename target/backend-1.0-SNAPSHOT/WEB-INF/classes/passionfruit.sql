@@ -206,7 +206,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`nickName`,`avatar`,`phone`,`password`) values (1405619599,'KDWIN','https://wx.qlogo.cn/mmopen/vi_32/L9VVrMFqrzeQUqf1S8TWLcVuuKrE9kbQYibuqJumhNDfuXFWoC6ic2KaiaPqBKBZvFibVhpZicEJBicXmY1MeKHKBBCQ/132',NULL,NULL);
+insert  into `user`(`id`,`nickName`,`avatar`,`phone`,`password`) values (1405619599,'KDWIN','https://wx.qlogo.cn/mmopen/vi_32/L9VVrMFqrzeQUqf1S8TWLcVuuKrE9kbQYibuqJumhNDfuXFWoC6ic2KaiaPqBKBZvFibVhpZicEJBicXmY1MeKHKBBCQ/132','18775931825','CA0EAEF6FD32D68B88DB07B0BD6B8A46');
 
 /*Table structure for table `user_auth` */
 
