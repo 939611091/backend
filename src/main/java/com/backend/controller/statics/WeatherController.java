@@ -1,6 +1,5 @@
 package com.backend.controller.statics;
 
-import com.backend.entity.Variety;
 import com.backend.entity.Weather;
 import com.backend.service.WeatherService;
 import com.github.pagehelper.PageInfo;
@@ -44,7 +43,7 @@ public class WeatherController {
      * @date 2019/12/17
      */
     @GetMapping("/add")
-    public String add(RedirectAttributes redirectAttributes) {
+    public String add() {
 
         return "manager/static/weather_add";
     }

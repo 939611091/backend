@@ -1,21 +1,20 @@
 package com.backend.controller.statics;
 
-import com.backend.entity.Variety;
-import com.backend.service.VarietyService;
+import com.backend.entity.Period;
+import com.backend.service.PeriodService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 import java.util.Map;
 
 @Controller
-@RequestMapping("/static/variety")
-public class VarietyController {
+@RequestMapping("/static/period")
+public class PeriodController {
     @Autowired
-    private VarietyService varietyService;
+    private PeriodService periodService;
     /**
      * 列表界面
      *
@@ -30,10 +29,10 @@ public class VarietyController {
                        @RequestParam Map<String, Object> params,
 
                        Map<String, Object> map) {
-        PageInfo<Variety> pageResult = varietyService.selectByMap(params, pageNum, pageSize);
+        PageInfo<Period> pageResult = periodService.selectByMap(params, pageNum, pageSize);
         map.put("pageResult", pageResult);
         map.put("params", params);
-        return "manager/static/variety_list";
+        return "manager/static/period_list";
     }
 
     /**
@@ -46,7 +45,7 @@ public class VarietyController {
     @GetMapping("/add")
     public String add() {
 
-        return "manager/static/variety_add";
+        return "manager/static/period_add";
     }
 
     /**
@@ -56,16 +55,16 @@ public class VarietyController {
      * @date 2019/7/19
      */
     @PostMapping("/add.do")
-    public String add(Variety variety, RedirectAttributes redirectAttributes) {
+    public String add(Period period, RedirectAttributes redirectAttributes) {
         //检查不能为空
-        if (variety.getName().equals("")) {
+        if (period.getName().equals("")) {
             redirectAttributes.addFlashAttribute("msgError", "错误提示：品种名不能为空！");
-            return "redirect:/static/variety/add";
+            return "redirect:/static/period/add";
         }
 
-        varietyService.insert(variety);
+        periodService.insert(period);
         redirectAttributes.addFlashAttribute("msgSuccess","成功提示：添加成功");
-        return "redirect:/static/variety/list";
+        return "redirect:/static/period/list";
     }
 
     /**
@@ -78,14 +77,14 @@ public class VarietyController {
      * @return
      */
     @GetMapping("/edit")
-    public String editVariety(Integer id, Map<String, Object> map) {
+    public String editPeriod(Integer id, Map<String, Object> map) {
 
 
-        Variety variety = varietyService.selectByPrimaryKey(id);
+        Period period = periodService.selectByPrimaryKey(id);
 
-        map.put("variety",variety);
+        map.put("period",period);
 
-        return "manager/static/variety_edit";
+        return "manager/static/period_edit";
     }
 
     /**
@@ -95,19 +94,19 @@ public class VarietyController {
      * @date 2019/12/17
      */
     @RequestMapping("/edit.do")
-    public String edit(Variety variety, RedirectAttributes redirectAttributes) {
+    public String edit(Period period, RedirectAttributes redirectAttributes) {
         //检查不能为空
-        if (variety.getName().equals("")) {
+        if (period.getName().equals("")) {
             redirectAttributes.addFlashAttribute("msgError", "错误提示：品种不能为空！");
-            return "redirect:/admin/variety/edit";
+            return "redirect:/admin/period/edit";
         }
-        if(varietyService.updateByPrimaryKey(variety)>0){
+        if(periodService.updateByPrimaryKey(period)>0){
             redirectAttributes.addFlashAttribute("msgSuccess","成功提示：修改成功");
         }else {
             redirectAttributes.addFlashAttribute("msgError","错误提示：修改失败");
         }
 
-        return "redirect:/static/variety/list";
+        return "redirect:/static/period/list";
     }
 
     /**
@@ -117,8 +116,8 @@ public class VarietyController {
      */
     @GetMapping("/delete.do")
     public String delete(Integer id, RedirectAttributes redirectAttributes) {
-        varietyService.deleteByPrimaryKey(id);
+        periodService.deleteByPrimaryKey(id);
         redirectAttributes.addFlashAttribute("msgError","成功提示：删除成功");
-        return "redirect:/static/variety/list";
+        return "redirect:/static/period/list";
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -49,5 +50,18 @@ public class AdminController {
             redirectAttributes.addFlashAttribute("msg", "错误提示：用户名和密码错误，请重试。");
             return "redirect:/admin/login";
         }
+    }
+    //退出用户
+    @GetMapping("exit")
+    public String exitUser(HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        //从session判断admin是否存在，即可判断用户是否登录
+        if (session.getAttribute("admin") != null) {
+            //使当前session的user无效
+            session.removeAttribute("admin");
+
+        }
+        return "redirect:/admin/login";
     }
 }
