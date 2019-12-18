@@ -86,7 +86,6 @@
                                                 <td>${variety.id }</td>
                                                 <td>${variety.name }</td>
                                                 <td class="mailbox-date">
-                                                <td class="mailbox-date">
                                                     <div class="btn-group">
                                                         <button type="button" class="btn btn-default" onclick="window.location='${contextPath}/static/variety/edit?id=${variety.id}'">
                                                             编辑
@@ -100,7 +99,6 @@
                                                             <li><a href="${contextPath}/static/variety/delete.do?id=${variety.id}" onclick= "return confirm('确认删除？');">删除</a></li>
                                                         </ul>
                                                     </div>
-                                                </td>
                                                 </td>
                                             </tr>
                                             </c:forEach>
