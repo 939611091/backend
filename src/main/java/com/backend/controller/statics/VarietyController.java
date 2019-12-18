@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import java.util.Map;
 
 @Controller
@@ -26,7 +27,8 @@ public class VarietyController {
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public String list(@RequestParam(required = false, defaultValue = "1") int pageNum,
                        @RequestParam(required = false, defaultValue = "10") int pageSize,
-                       @RequestParam Map<String, Object> params, RedirectAttributes redirectAttributes,
+                       @RequestParam Map<String, Object> params,
+
                        Map<String, Object> map) {
         PageInfo<Variety> pageResult = varietyService.selectByMap(params, pageNum, pageSize);
         map.put("pageResult", pageResult);
@@ -42,7 +44,7 @@ public class VarietyController {
      * @date 2019/12/17
      */
     @GetMapping("/add")
-    public String add(RedirectAttributes redirectAttributes) {
+    public String add() {
 
         return "manager/static/variety_add";
     }
@@ -76,7 +78,7 @@ public class VarietyController {
      * @return
      */
     @GetMapping("/edit")
-    public String editClassroom(Integer id, Map<String, Object> map,RedirectAttributes redirectAttributes) {
+    public String editVariety(Integer id, Map<String, Object> map) {
 
 
         Variety variety = varietyService.selectByPrimaryKey(id);
@@ -97,7 +99,7 @@ public class VarietyController {
         //检查不能为空
         if (variety.getName().equals("")) {
             redirectAttributes.addFlashAttribute("msgError", "错误提示：品种不能为空！");
-            return "redirect:/admin/classroom/edit";
+            return "redirect:/admin/variety/edit";
         }
         if(varietyService.updateByPrimaryKey(variety)>0){
             redirectAttributes.addFlashAttribute("msgSuccess","成功提示：修改成功");

@@ -14,7 +14,7 @@
                 <img src="${contextPath}/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>${sessionScope.user.nickname}，我的ID：${sessionScope.user.id}</p>
+                <p>${sessionScope.admin.username}，我的ID：${sessionScope.admin.adminid}</p>
                 <!-- Status -->
                 <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
             </div>
@@ -23,7 +23,7 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">菜单</li>
-            <li><a href="${contextPath}/users/index"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+            <li><a href="${contextPath}/admin/index"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
 
             <li class="treeview">
                 <a href="#"><i class="fa fa-user"></i> <span>用户信息管理</span>

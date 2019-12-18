@@ -1,28 +1,28 @@
 package com.backend.entity;
 
-public class Users {
-    private Integer id;
+public class Admin {
+    private Integer adminid;
 
     private String username;
 
     private String password;
 
-    public Users(Integer id, String username, String password) {
-        this.id = id;
+    public Admin(Integer adminid, String username, String password) {
+        this.adminid = adminid;
         this.username = username;
         this.password = password;
     }
 
-    public Users() {
+    public Admin() {
         super();
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getAdminid() {
+        return adminid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setAdminid(Integer adminid) {
+        this.adminid = adminid;
     }
 
     public String getUsername() {
@@ -47,7 +47,7 @@ public class Users {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
+        sb.append(", adminid=").append(adminid);
         sb.append(", username=").append(username);
         sb.append(", password=").append(password);
         sb.append("]");

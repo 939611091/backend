@@ -1,7 +1,6 @@
 package com.backend.dao;
 
 import com.backend.entity.User;
-import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -15,7 +14,4 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-
-    //登录
-    User selectLogin(@Param("phone") String phone, @Param("password") String password);
 }

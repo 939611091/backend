@@ -2,6 +2,9 @@ package com.backend.dao;
 
 import com.backend.entity.Reason;
 
+import java.util.List;
+import java.util.Map;
+
 public interface ReasonMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +17,6 @@ public interface ReasonMapper {
     int updateByPrimaryKeySelective(Reason record);
 
     int updateByPrimaryKey(Reason record);
+
+    List<Reason> selectByMap(Map<String, Object> map);
 }
