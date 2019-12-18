@@ -16,6 +16,21 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`passionfruit` /*!40100 DEFAULT CHARACTE
 
 USE `passionfruit`;
 
+/*Table structure for table `admin` */
+
+DROP TABLE IF EXISTS `admin`;
+
+CREATE TABLE `admin` (
+  `adminId` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员id',
+  `username` varchar(255) DEFAULT NULL COMMENT '用户名',
+  `password` varchar(255) DEFAULT NULL COMMENT '密码',
+  PRIMARY KEY (`adminId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `admin` */
+
+insert  into `admin`(`adminId`,`username`,`password`) values (1,'admin','CA0EAEF6FD32D68B88DB07B0BD6B8A46');
+
 /*Table structure for table `farming_detail` */
 
 DROP TABLE IF EXISTS `farming_detail`;
@@ -200,13 +215,12 @@ CREATE TABLE `user` (
   `nickName` varchar(255) DEFAULT NULL COMMENT '昵称',
   `avatar` varchar(255) DEFAULT NULL COMMENT '头像地址',
   `phone` varchar(255) DEFAULT NULL COMMENT '手机号码',
-  `password` varchar(255) DEFAULT NULL COMMENT '后台登录密码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`nickName`,`avatar`,`phone`,`password`) values (1405619599,'KDWIN','https://wx.qlogo.cn/mmopen/vi_32/L9VVrMFqrzeQUqf1S8TWLcVuuKrE9kbQYibuqJumhNDfuXFWoC6ic2KaiaPqBKBZvFibVhpZicEJBicXmY1MeKHKBBCQ/132','18775931825','CA0EAEF6FD32D68B88DB07B0BD6B8A46');
+insert  into `user`(`id`,`nickName`,`avatar`,`phone`) values (1405619599,'KDWIN','https://wx.qlogo.cn/mmopen/vi_32/L9VVrMFqrzeQUqf1S8TWLcVuuKrE9kbQYibuqJumhNDfuXFWoC6ic2KaiaPqBKBZvFibVhpZicEJBicXmY1MeKHKBBCQ/132','18775931825');
 
 /*Table structure for table `user_auth` */
 
@@ -233,7 +247,7 @@ CREATE TABLE `variety` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL COMMENT '品种名称（黄色百香果、紫色百香果、紫红色百香果）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `variety` */
 

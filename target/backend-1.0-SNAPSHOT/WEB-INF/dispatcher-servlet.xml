@@ -43,7 +43,14 @@
     <!-- 静态资源访问 -->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:resources location="/imgs/" mapping="/imgs/**"/>
-
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/admin/login.do"/>
+            <mvc:exclude-mapping path="/admin/login"/>
+            <bean class="com.backend.intercepter.PermissionInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
     <!-- 注册拦截器 -->
     <!--<mvc:interceptors>
         <mvc:interceptor>

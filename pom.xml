@@ -233,8 +233,13 @@
       <artifactId>spring-test</artifactId>
       <version>${spring.version}</version>
       <scope>test</scope>
-    </dependency>
 
+    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.mybatis.generator</groupId>-->
+<!--      <artifactId>mybatis-generator-maven-plugin</artifactId>-->
+<!--      <version>1.3.7</version>-->
+<!--    </dependency>-->
 
 
   </dependencies>
@@ -280,12 +285,12 @@
       <plugin>
         <groupId>org.mybatis.generator</groupId>
         <artifactId>mybatis-generator-maven-plugin</artifactId>
-        <version>1.3.6</version>
+        <version>1.3.7</version>
         <configuration>
           <!--generatorConfig.xml位置-->
           <configurationFile>target/classes/generatorConfig.xml</configurationFile>
           <verbose>true</verbose>
-          <overwrite>true</overwrite>
+          <overwrite>false</overwrite>
         </configuration>
         <executions>
           <execution>

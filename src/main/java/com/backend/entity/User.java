@@ -9,14 +9,11 @@ public class User {
 
     private String phone;
 
-    private String password;
-
-    public User(Integer id, String nickname, String avatar, String phone, String password) {
+    public User(Integer id, String nickname, String avatar, String phone) {
         this.id = id;
         this.nickname = nickname;
         this.avatar = avatar;
         this.phone = phone;
-        this.password = password;
     }
 
     public User() {
@@ -55,14 +52,6 @@ public class User {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -73,7 +62,6 @@ public class User {
         sb.append(", nickname=").append(nickname);
         sb.append(", avatar=").append(avatar);
         sb.append(", phone=").append(phone);
-        sb.append(", password=").append(password);
         sb.append("]");
         return sb.toString();
     }

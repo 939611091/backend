@@ -1,21 +1,21 @@
 package com.backend.controller.statics;
 
 import com.backend.entity.Variety;
-import com.backend.service.VarietyService;
+import com.backend.entity.Weather;
+import com.backend.service.WeatherService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/static/variety")
-public class VarietyController {
+@RequestMapping("/static/weather")
+public class WeatherController {
     @Autowired
-    private VarietyService varietyService;
+    private WeatherService weatherService;
     /**
      * 列表界面
      *
@@ -30,10 +30,10 @@ public class VarietyController {
                        @RequestParam Map<String, Object> params,
 
                        Map<String, Object> map) {
-        PageInfo<Variety> pageResult = varietyService.selectByMap(params, pageNum, pageSize);
+        PageInfo<Weather> pageResult = weatherService.selectByMap(params, pageNum, pageSize);
         map.put("pageResult", pageResult);
         map.put("params", params);
-        return "manager/static/variety_list";
+        return "manager/static/weather_list";
     }
 
     /**
@@ -46,7 +46,7 @@ public class VarietyController {
     @GetMapping("/add")
     public String add(RedirectAttributes redirectAttributes) {
 
-        return "manager/static/variety_add";
+        return "manager/static/weather_add";
     }
 
     /**
@@ -56,16 +56,16 @@ public class VarietyController {
      * @date 2019/7/19
      */
     @PostMapping("/add.do")
-    public String add(Variety variety, RedirectAttributes redirectAttributes) {
+    public String add(Weather weather, RedirectAttributes redirectAttributes) {
         //检查不能为空
-        if (variety.getName().equals("")) {
+        if (weather.getName().equals("")) {
             redirectAttributes.addFlashAttribute("msgError", "错误提示：品种名不能为空！");
-            return "redirect:/static/variety/add";
+            return "redirect:/static/weather/add";
         }
 
-        varietyService.insert(variety);
+        weatherService.insert(weather);
         redirectAttributes.addFlashAttribute("msgSuccess","成功提示：添加成功");
-        return "redirect:/static/variety/list";
+        return "redirect:/static/weather/list";
     }
 
     /**
@@ -78,14 +78,14 @@ public class VarietyController {
      * @return
      */
     @GetMapping("/edit")
-    public String editVariety(Integer id, Map<String, Object> map) {
+    public String editWeather(Integer id, Map<String, Object> map) {
 
 
-        Variety variety = varietyService.selectByPrimaryKey(id);
+        Weather weather = weatherService.selectByPrimaryKey(id);
 
-        map.put("variety",variety);
+        map.put("weather",weather);
 
-        return "manager/static/variety_edit";
+        return "manager/static/weather_edit";
     }
 
     /**
@@ -95,19 +95,19 @@ public class VarietyController {
      * @date 2019/12/17
      */
     @RequestMapping("/edit.do")
-    public String edit(Variety variety, RedirectAttributes redirectAttributes) {
+    public String edit(Weather weather, RedirectAttributes redirectAttributes) {
         //检查不能为空
-        if (variety.getName().equals("")) {
+        if (weather.getName().equals("")) {
             redirectAttributes.addFlashAttribute("msgError", "错误提示：品种不能为空！");
-            return "redirect:/admin/variety/edit";
+            return "redirect:/admin/weather/edit";
         }
-        if(varietyService.updateByPrimaryKey(variety)>0){
+        if(weatherService.updateByPrimaryKey(weather)>0){
             redirectAttributes.addFlashAttribute("msgSuccess","成功提示：修改成功");
         }else {
             redirectAttributes.addFlashAttribute("msgError","错误提示：修改失败");
         }
 
-        return "redirect:/static/variety/list";
+        return "redirect:/static/weather/list";
     }
 
     /**
@@ -117,8 +117,8 @@ public class VarietyController {
      */
     @GetMapping("/delete.do")
     public String delete(Integer id, RedirectAttributes redirectAttributes) {
-        varietyService.deleteByPrimaryKey(id);
+        weatherService.deleteByPrimaryKey(id);
         redirectAttributes.addFlashAttribute("msgError","成功提示：删除成功");
-        return "redirect:/static/variety/list";
+        return "redirect:/static/weather/list";
     }
 }

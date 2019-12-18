@@ -67,7 +67,7 @@
                         <!-- The user image in the navbar-->
                         <img src="${contextPath}/resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">用户名：${sessionScope.user.nickname}</span>
+                        <span class="hidden-xs">用户名：${sessionScope.admin.username}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
@@ -76,7 +76,7 @@
 
                             <p>
 
-                                <span>${sessionScope.user.nickname}</span>
+                                <span>${sessionScope.admin.username}</span>
                                 <%--                                <small>${'权限：'}</small>--%>
                             </p>
                         </li>
@@ -84,7 +84,7 @@
                         <li class="user-footer">
 
                             <div class="pull-right">
-                                <a href="${contextPath}/users/user/exit" class="btn btn-default btn-flat">注销</a>
+                                <a href="${contextPath}/admin/exit" class="btn btn-default btn-flat">注销</a>
                                 <form id="logoutform" action="#" method="post">
 
                                 </form>

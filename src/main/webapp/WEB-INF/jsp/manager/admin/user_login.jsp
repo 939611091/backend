@@ -28,12 +28,12 @@
                                     ${msg}
                             </div>
                         </c:if>
-                        <form method="POST" action="${contextPath}/users/user/login.do">
+                        <form method="POST" action="${contextPath}/admin/login.do">
 
                             <div class="form-group">
-                                <label for="username">手机号</label>
+                                <label for="username">用户名</label>
 
-                                <input id="username" type="text" class="form-control" name="phone" >
+                                <input id="username" type="text" class="form-control" name="username" >
                             </div>
 
                             <div class="form-group">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="footer">
-                    Copyright &copy; CIMS
+                    Copyright &copy; BACKEND
                 </div>
             </div>
         </div>
