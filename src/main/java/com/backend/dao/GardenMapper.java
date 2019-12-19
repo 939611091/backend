@@ -2,6 +2,9 @@ package com.backend.dao;
 
 import com.backend.entity.Garden;
 
+import java.util.List;
+import java.util.Map;
+
 public interface GardenMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +17,6 @@ public interface GardenMapper {
     int updateByPrimaryKeySelective(Garden record);
 
     int updateByPrimaryKey(Garden record);
+
+    List<Garden> selectByMap(Map<String, Object> map);
 }

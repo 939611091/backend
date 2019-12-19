@@ -162,5 +162,13 @@
       created = #{created,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
+  <select id="selectByMap" parameterType="Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `garden`
+    where 1=1
+    <if test="keyword != null and keyword.trim() != ''">
+      and `address` LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+    </if>
+  </select>
 </mapper>
