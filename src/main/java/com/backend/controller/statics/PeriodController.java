@@ -58,7 +58,7 @@ public class PeriodController {
     public String add(Period period, RedirectAttributes redirectAttributes) {
         //检查不能为空
         if (period.getName().equals("")) {
-            redirectAttributes.addFlashAttribute("msgError", "错误提示：品种名不能为空！");
+            redirectAttributes.addFlashAttribute("msgError", "错误提示：物候期名不能为空！");
             return "redirect:/static/period/add";
         }
 
@@ -97,8 +97,8 @@ public class PeriodController {
     public String edit(Period period, RedirectAttributes redirectAttributes) {
         //检查不能为空
         if (period.getName().equals("")) {
-            redirectAttributes.addFlashAttribute("msgError", "错误提示：品种不能为空！");
-            return "redirect:/admin/period/edit";
+            redirectAttributes.addFlashAttribute("msgError", "错误提示：物候期不能为空！");
+            return "redirect:/static/period/edit";
         }
         if(periodService.updateByPrimaryKey(period)>0){
             redirectAttributes.addFlashAttribute("msgSuccess","成功提示：修改成功");

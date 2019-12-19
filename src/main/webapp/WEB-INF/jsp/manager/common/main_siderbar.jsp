@@ -32,11 +32,11 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="${contextPath}/users/users/list"><i class="fa fa-circle-o"></i>用户列表</a></li>
-                    <li><a href="${contextPath}/users/users/addusers"><i class="fa fa-circle-o"></i>用户果园管理</a></li>
-                    <li><a href="${contextPath}/users/users/addusers"><i class="fa fa-circle-o"></i>用户农事操作管理</a></li>
-                    <li><a href="${contextPath}/users/users/addusers"><i class="fa fa-circle-o"></i>用户药肥使用的记录</a></li>
-                    <li><a href="${contextPath}/users/users/addusers"><i class="fa fa-circle-o"></i>个人信息管理</a></li>
+                    <li><a href="${contextPath}/users/user/list"><i class="fa fa-circle-o"></i>用户信息管理</a></li>
+                    <li><a href="${contextPath}/users/garden/list"><i class="fa fa-circle-o"></i>用户果园管理</a></li>
+                    <li><a href="${contextPath}/users/user/list"><i class="fa fa-circle-o"></i>用户农事操作管理</a></li>
+                    <li><a href="${contextPath}/users/user/list"><i class="fa fa-circle-o"></i>用户药肥使用的记录</a></li>
+                    <li><a href="${contextPath}/admin/edit"><i class="fa fa-circle-o"></i>个人信息管理</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -46,7 +46,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="${contextPath}/static/variety/list"><i class="fa fa-circle-o"></i>授权信息管理</a></li>
+                    <li><a href="${contextPath}/static/user_auth/list"><i class="fa fa-circle-o"></i>授权信息管理</a></li>
                     <li><a href="${contextPath}/static/weather/list"><i class="fa fa-circle-o"></i>天气信息管理</a></li>
                     <li><a href="${contextPath}/static/reason/list"><i class="fa fa-circle-o"></i>肥药使原因管理</a></li>
                     <li><a href="${contextPath}/static/farming_operating/list"><i class="fa fa-circle-o"></i>农事操作管理</a></li>

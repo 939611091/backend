@@ -77,4 +77,9 @@
     where username = #{username}
     and password = #{password}
   </select>
+  <select id="selectPasswordById" parameterType="java.lang.Integer"  resultType="java.lang.String">
+        select `password`
+        from `admin`
+        where adminId = #{adminid,jdbcType=INTEGER}
+  </select>
 </mapper>

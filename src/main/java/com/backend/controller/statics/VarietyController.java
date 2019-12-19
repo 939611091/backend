@@ -99,7 +99,7 @@ public class VarietyController {
         //检查不能为空
         if (variety.getName().equals("")) {
             redirectAttributes.addFlashAttribute("msgError", "错误提示：品种不能为空！");
-            return "redirect:/admin/variety/edit";
+            return "redirect:/static/variety/edit";
         }
         if(varietyService.updateByPrimaryKey(variety)>0){
             redirectAttributes.addFlashAttribute("msgSuccess","成功提示：修改成功");

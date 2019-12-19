@@ -16,5 +16,7 @@ public interface AdminMapper {
 
     int updateByPrimaryKey(Admin record);
     //登录
-    Admin selectLogin(@Param("username") String phone, @Param("password") String password);
+    Admin selectLogin(@Param("username") String username, @Param("password") String password);
+    //根据id查密码
+    String selectPasswordById(Integer adminId);
 }

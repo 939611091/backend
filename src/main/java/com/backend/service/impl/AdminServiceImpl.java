@@ -28,6 +28,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int updateByPrimaryKey(Admin record) {
+        //对密码进行加密
+        record.setPassword(MD5Util.MD5EncodeUtf8(record.getPassword()));
         return adminMapper.updateByPrimaryKey(record);
     }
 
@@ -44,5 +46,10 @@ public class AdminServiceImpl implements AdminService {
         }else {
             return null;
         }
+    }
+
+    @Override
+    public String selectPasswordById(Integer adminId) {
+        return adminMapper.selectPasswordById(adminId);
     }
 }

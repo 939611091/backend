@@ -92,5 +92,13 @@
       credential = #{credential,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
+  <select id="selectByMap" parameterType="Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `user_auth`
+    where 1=1
+    <if test="keyword != null and keyword.trim() != ''">
+      and `userId` = #{keyword}
+    </if>
+  </select>
 </mapper>

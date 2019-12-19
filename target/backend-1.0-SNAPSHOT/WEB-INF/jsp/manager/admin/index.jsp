@@ -85,7 +85,7 @@
                         <%--</c:when>--%>
                             <h3>你好，${sessionScope.user.nickname}管理员 (๑＞ڡ＜)☆</h3>
                     <%--</c:choose>--%>
-
+                    <h3 class="box-title">${msgSuccess}${msgError}</h3>
                 </div>
             </div>
 

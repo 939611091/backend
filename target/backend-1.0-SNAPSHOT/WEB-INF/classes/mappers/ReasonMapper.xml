@@ -78,4 +78,10 @@
     </if>
     and parentId != 0
   </select>
+  <select id="selectAllParent" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `reason`
+    where parentId = 0
+  </select>
 </mapper>

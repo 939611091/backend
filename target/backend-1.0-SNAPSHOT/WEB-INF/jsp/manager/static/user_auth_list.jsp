@@ -34,11 +34,11 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    用户信息管理
+                    用户权限信息管理
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">用户列表</li>
+                    <li class="active">用户权限列表</li>
                 </ol>
             </section>
 
@@ -48,19 +48,18 @@
                     <div class="col-md-12">
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">用户列表</h3>&nbsp&nbsp&nbsp&nbsp
-                                <button type="button" class="btn btn-danger" onclick="location.href='${contextPath}/users/users/addusers';"><i class="fa fa-fw fa-search"></i>添加管理员</button>&nbsp&nbsp&nbsp
+                                <h3 class="box-title">用户权限列表</h3>&nbsp&nbsp&nbsp&nbsp
                                 <h3 class="box-title">${msgSuccess}${msgError}</h3>
                                <div class="box-tools pull-right">
-                                    <form action="${contextPath}/users/users/list" method="post" id="search">
+                                    <form action="${contextPath}/static/user_auth/list" method="post" id="search">
                                         <input name="pageNum" value="1" hidden>
                                         <input name="pageSize" value="10" hidden>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="姓名" name="keyword"  value="${params.get('keyword')}">
+                                        <input type="text" class="form-control" placeholder="用户ID" name="keyword"  value="${params.get('keyword')}">
                                     </div>
                                     <div class="col-md-6 text-right">
                                         <button type="button" class="btn btn-default"
-                                                onclick="location.href='${contextPath}/users/users/list';">
+                                                onclick="location.href='${contextPath}/static/user_auth/list';">
                                             <i class="fa fa-fw fa-refresh"></i>查询全部
                                         </button>
                                         <button type="button" class="btn btn-success" onclick="searchArticles({})"><i class="fa fa-fw fa-search"></i>查询
@@ -77,20 +76,22 @@
                                     <table id="example1" class="table table-bordered">
                                         <tbody>
                                             <tr align="center">
-                                                <td>管理员ID</td>
-                                                <td>用户名</td>
+                                                <td>用户ID</td>
+                                                <td>第三方登录类型</td>
+                                                <td>第三方应用标识码</td>
+                                                <td>密码凭证</td>
                                                 <td>操作</td>
                                             </tr>
-                                            <c:forEach items="${pageResult.list}" var="users" >
+                                            <c:forEach items="${pageResult.list}" var="user_auth" >
                                             <tr align="center">
-                                                <td>${users.id }</td>
-                                                <td>${users.username }</td>
+                                                <td>${user_auth.userid }</td>
+                                                <td>${user_auth.identitytype }</td>
+                                                <td>${user_auth.identifier }</td>
+                                                <td>${user_auth.credential }</td>
                                                 <td class="mailbox-date">
-                                                        <div class="btn-group">
-                                                             <button type="button" class="btn btn-default" onclick="window.location='${contextPath}/users/users/editusers?id=${users.id}'">
-                                                                 <i class="fa fa-fw fa-refresh"></i>编辑
-                                                             </button>
-                                                        </div>
+                                                    <button type="button" class="btn btn-default" onclick="window.location='${contextPath}/static/user_auth/delete.do?id=${user_auth.id}'">
+                                                        <i class="fa fa-fw fa-refresh"></i>取消权限
+                                                    </button>
                                                 </td>
                                             </tr>
                                             </c:forEach>
@@ -108,7 +109,7 @@
                                         <ul class="pagination pagination-sm no-margin pull-right">
                                             <li ${pageResult.hasPreviousPage? "":"class='disabled'"}>
                                                 <c:if test="${pageResult.hasPreviousPage}">
-                                                    <a href="${contextPath}/users/users/list?pageNum=${pageResult.prePage}">上一页</a>
+                                                    <a href="${contextPath}/static/user_auth/list?pageNum=${pageResult.prePage}">上一页</a>
                                                 </c:if>
                                                 <c:if test="${!pageResult.hasPreviousPage}">
                                                     <span>上一页</span>
@@ -116,12 +117,12 @@
                                             </li>
                                             <c:forEach items="${pageResult.navigatepageNums}" var="num">
                                                 <li ${pageResult.pageNum == num ? "class='active'":""}>
-                                                    <a href="${contextPath}/users/users/list?pageNum=${num}">${num}</a>
+                                                    <a href="${contextPath}/static/user_auth/list?pageNum=${num}">${num}</a>
                                                 </li>
                                             </c:forEach>
                                             <li ${pageResult.hasNextPage? "":"class='disabled'"}>
                                                 <c:if test="${pageResult.hasNextPage}">
-                                                    <a href="${contextPath}/users/users/list?pageNum=${pageResult.nextPage}">下一页</a>
+                                                    <a href="${contextPath}/static/user_auth/list?pageNum=${pageResult.nextPage}">下一页</a>
                                                 </c:if>
                                                 <c:if test="${!pageResult.hasNextPage}">
                                                     <span>下一页</span>

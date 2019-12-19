@@ -3,6 +3,7 @@ package com.backend.service;
 import com.backend.entity.Reason;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
 import java.util.Map;
 
 public interface ReasonService {
@@ -15,4 +16,7 @@ public interface ReasonService {
     int updateByPrimaryKey(Reason record);
 
     PageInfo<Reason> selectByMap(Map<String, Object> map, int pageNum, int pageSize);
+
+    //查询所有父类
+    List<Reason> selectAllParent();
 }

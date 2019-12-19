@@ -43,4 +43,9 @@ public class ReasonServiceImpl implements ReasonService {
         pageResult.setList(reasonList);
         return pageResult;
     }
+
+    @Override
+    public List<Reason> selectAllParent() {
+        return reasonMapper.selectAllParent();
+    }
 }

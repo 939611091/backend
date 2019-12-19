@@ -19,4 +19,6 @@ public interface ReasonMapper {
     int updateByPrimaryKey(Reason record);
 
     List<Reason> selectByMap(Map<String, Object> map);
+    //查询所有父类
+    List<Reason> selectAllParent();
 }

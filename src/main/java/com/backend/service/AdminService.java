@@ -13,4 +13,5 @@ public interface AdminService {
 
     //登录
     Admin login(String username, String password);
+    String selectPasswordById(Integer adminId);
 }

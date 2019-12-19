@@ -58,7 +58,7 @@ public class FarmingOperatingController {
     public String add(FarmingOperating farmingOperating, RedirectAttributes redirectAttributes) {
         //检查不能为空
         if (farmingOperating.getName().equals("")) {
-            redirectAttributes.addFlashAttribute("msgError", "错误提示：品种名不能为空！");
+            redirectAttributes.addFlashAttribute("msgError", "错误提示：农事操作名不能为空！");
             return "redirect:/static/farming_operating/add";
         }
 
@@ -97,8 +97,8 @@ public class FarmingOperatingController {
     public String edit(FarmingOperating farmingOperating, RedirectAttributes redirectAttributes) {
         //检查不能为空
         if (farmingOperating.getName().equals("")) {
-            redirectAttributes.addFlashAttribute("msgError", "错误提示：品种不能为空！");
-            return "redirect:/admin/farming_operating/edit";
+            redirectAttributes.addFlashAttribute("msgError", "错误提示：农事操作不能为空！");
+            return "redirect:/static/farming_operating/edit";
         }
         if(farmingOperatingService.updateByPrimaryKey(farmingOperating)>0){
             redirectAttributes.addFlashAttribute("msgSuccess","成功提示：修改成功");

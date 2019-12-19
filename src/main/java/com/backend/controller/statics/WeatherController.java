@@ -58,7 +58,7 @@ public class WeatherController {
     public String add(Weather weather, RedirectAttributes redirectAttributes) {
         //检查不能为空
         if (weather.getName().equals("")) {
-            redirectAttributes.addFlashAttribute("msgError", "错误提示：品种名不能为空！");
+            redirectAttributes.addFlashAttribute("msgError", "错误提示：天气名不能为空！");
             return "redirect:/static/weather/add";
         }
 
@@ -97,8 +97,8 @@ public class WeatherController {
     public String edit(Weather weather, RedirectAttributes redirectAttributes) {
         //检查不能为空
         if (weather.getName().equals("")) {
-            redirectAttributes.addFlashAttribute("msgError", "错误提示：品种不能为空！");
-            return "redirect:/admin/weather/edit";
+            redirectAttributes.addFlashAttribute("msgError", "错误提示：天气不能为空！");
+            return "redirect:/static/weather/edit";
         }
         if(weatherService.updateByPrimaryKey(weather)>0){
             redirectAttributes.addFlashAttribute("msgSuccess","成功提示：修改成功");
