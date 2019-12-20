@@ -118,7 +118,7 @@
                                         <ul class="pagination pagination-sm no-margin pull-right">
                                             <li ${pageResult.hasPreviousPage? "":"class='disabled'"}>
                                                 <c:if test="${pageResult.hasPreviousPage}">
-                                                    <a href="${contextPath}/users/users/list?pageNum=${pageResult.prePage}">上一页</a>
+                                                    <a href="${contextPath}/users/user/list?pageNum=${pageResult.prePage}">上一页</a>
                                                 </c:if>
                                                 <c:if test="${!pageResult.hasPreviousPage}">
                                                     <span>上一页</span>
@@ -126,12 +126,12 @@
                                             </li>
                                             <c:forEach items="${pageResult.navigatepageNums}" var="num">
                                                 <li ${pageResult.pageNum == num ? "class='active'":""}>
-                                                    <a href="${contextPath}/users/users/list?pageNum=${num}">${num}</a>
+                                                    <a href="${contextPath}/users/user/list?pageNum=${num}">${num}</a>
                                                 </li>
                                             </c:forEach>
                                             <li ${pageResult.hasNextPage? "":"class='disabled'"}>
                                                 <c:if test="${pageResult.hasNextPage}">
-                                                    <a href="${contextPath}/users/users/list?pageNum=${pageResult.nextPage}">下一页</a>
+                                                    <a href="${contextPath}/users/user/list?pageNum=${pageResult.nextPage}">下一页</a>
                                                 </c:if>
                                                 <c:if test="${!pageResult.hasNextPage}">
                                                     <span>下一页</span>
