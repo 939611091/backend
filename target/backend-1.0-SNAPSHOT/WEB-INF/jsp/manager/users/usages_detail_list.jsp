@@ -34,11 +34,11 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    果园信息管理
+                    药肥使用记录信息管理
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">果园列表</li>
+                    <li class="active">药肥使用记录列表</li>
                 </ol>
             </section>
 
@@ -48,18 +48,18 @@
                     <div class="col-md-12">
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">果园列表</h3>&nbsp&nbsp&nbsp&nbsp
+                                <h3 class="box-title">药肥使用记录列表</h3>&nbsp&nbsp&nbsp&nbsp
                                 <h3 class="box-title">${msgSuccess}${msgError}</h3>
                                <div class="box-tools pull-right">
-                                    <form action="${contextPath}/users/garden/list" method="post" id="search">
+                                    <form action="${contextPath}/users/usages_detail/list" method="post" id="search">
                                         <input name="pageNum" value="1" hidden>
                                         <input name="pageSize" value="10" hidden>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="地址" name="keyword"  value="${params.get('keyword')}">
+                                        <input type="text" class="form-control" placeholder="药肥名" name="keyword"  value="${params.get('keyword')}">
                                     </div>
                                     <div class="col-md-6 text-right">
                                         <button type="button" class="btn btn-default"
-                                                onclick="location.href='${contextPath}/users/garden/list';">
+                                                onclick="location.href='${contextPath}/users/usages_detail/list';">
                                             <i class="fa fa-fw fa-refresh"></i>查询全部
                                         </button>
                                         <button type="button" class="btn btn-success" onclick="searchArticles({})"><i class="fa fa-fw fa-search"></i>查询
@@ -76,43 +76,23 @@
                                     <table id="example1" class="table table-bordered">
                                         <tbody>
                                             <tr align="center">
-                                                <td>果园id</td>
-                                                <td>拥有者id</td>
-                                                <td>种植品种</td>
-                                                <td>物候期</td>
-                                                <td>果园名</td>
-                                                <td>最后一次修改时间</td>
-                                                <td>新建记录时间</td>
-                                                <td>操作</td>
+                                                <td>药肥使用记录ID</td>
+                                                <td>使用原因</td>
+                                                <td>所用药肥名</td>
+                                                <td>使用用量</td>
                                             </tr>
-                                            <c:forEach items="${pageResult.list}" var="gardenVo" >
+                                            <c:forEach items="${pageResult.list}" var="usages_detail" >
                                             <tr align="center">
-                                                <td>${gardenVo.id }</td>
-                                                <td>${gardenVo.user.id }</td>
-                                                <td>${gardenVo.variety.name }</td>
-                                                <td>${gardenVo.period.name }</td>
-                                                <td>${gardenVo.name }</td>
-                                                <td>
-                                                    <fmt:formatDate value="${gardenVo.lastmodified }"
-                                                                    pattern="yyyy年MM月dd日 "/>
-                                                </td>
-                                                <td>
-                                                    <fmt:formatDate value="${gardenVo.created }"
-                                                                    pattern="yyyy年MM月dd日 "/>
-                                                </td>
+                                                <td>${usages_detail.id }</td>
+                                                <td>${usages_detail.reason.name }</td>
+                                                <td>${usages_detail.name }</td>
+                                                <td>${usages_detail.dose }</td>
                                                 <td class="mailbox-date">
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-default" onclick="window.location='${contextPath}/users/garden/info?id=${gardenVo.id}'">
-                                                            查看果园信息
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" href="#"
+                                                                onclick="query(${usages_detail.usagesid})">
+                                                            <i class="fa fa-fw fa-refresh"></i>查看该记录操作详情
                                                         </button>
-                                                        <button type="button" class="btn btn-default dropdown-toggle"
-                                                                data-toggle="dropdown" aria-expanded="false">
-                                                            <span class="caret"></span>
-                                                            <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li><a href="${contextPath}/users/garden/delete.do?id=${gardenVo.id}" onclick= "return confirm('确认删除？');">删除</a></li>
-                                                        </ul>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -131,7 +111,7 @@
                                         <ul class="pagination pagination-sm no-margin pull-right">
                                             <li ${pageResult.hasPreviousPage? "":"class='disabled'"}>
                                                 <c:if test="${pageResult.hasPreviousPage}">
-                                                    <a href="${contextPath}/users/garden/list?pageNum=${pageResult.prePage}">上一页</a>
+                                                    <a href="${contextPath}/users/usages_detail/list?pageNum=${pageResult.prePage}">上一页</a>
                                                 </c:if>
                                                 <c:if test="${!pageResult.hasPreviousPage}">
                                                     <span>上一页</span>
@@ -139,12 +119,12 @@
                                             </li>
                                             <c:forEach items="${pageResult.navigatepageNums}" var="num">
                                                 <li ${pageResult.pageNum == num ? "class='active'":""}>
-                                                    <a href="${contextPath}/users/garden/list?pageNum=${num}">${num}</a>
+                                                    <a href="${contextPath}/users/usages_detail/list?pageNum=${num}">${num}</a>
                                                 </li>
                                             </c:forEach>
                                             <li ${pageResult.hasNextPage? "":"class='disabled'"}>
                                                 <c:if test="${pageResult.hasNextPage}">
-                                                    <a href="${contextPath}/users/garden/list?pageNum=${pageResult.nextPage}">下一页</a>
+                                                    <a href="${contextPath}/users/usages_detail/list?pageNum=${pageResult.nextPage}">下一页</a>
                                                 </c:if>
                                                 <c:if test="${!pageResult.hasNextPage}">
                                                     <span>下一页</span>
@@ -168,7 +148,49 @@
         <!-- Main Footer -->
         <jsp:include page="../common/main_footer.jsp"/>
 
+        <!-- 模态框 -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">操作详情</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- 模态框主体 -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="id">操作id</label>
+                            <input type="text" class="form-control" id="id" readonly value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="id">果园</label>
+                            <input type="text" class="form-control" id="gardenId" readonly value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="id">天气情况</label>
+                            <input type="text" class="form-control" id="weatherId" readonly value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="id">物候期</label>
+                            <input type="text" class="form-control" id="periodId" readonly value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="id">操作时间</label>
+                            <input type="text" class="form-control" id="date" readonly value="">
+                        </div>
+                    </div>
+
+                    <!-- 模态框底部 -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
@@ -191,6 +213,35 @@
                 $("#search input[name='keyword']").val(condition.keyword);
             }
             $("#search").submit();
+        }
+        //时间戳转时间
+        function timeTool (value) {  //13位时间戳
+            var date = new Date(value);
+            var Y = date.getFullYear() + '-';
+            var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+            var D = (date.getDate() < 10 ? '0'+date.getDate() : date.getDate()) + ' ';
+            // var h = (date.getHours() < 10 ? '0'+date.getHours() : date.getHours()) + ':';
+            // var m = (date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes()) + ':';
+            // var s = (date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds());+h+m+s
+            return (Y+M+D);
+        }
+
+        //模态框详情
+        function query(id) {
+            $.ajax({
+                url: "${contextPath}/users/usages_detail/modeDate",
+                async: true,
+                data: {"id": id},
+                type: "POST",
+                success: function (data) {
+                    console.log(data)
+                    $("#id").val(data.id);
+                    $("#gardenId").val(data.garden.name);
+                    $("#weatherId").val(data.weather.name);
+                    $("#periodId").val(data.period.name);
+                    $("#date").val(timeTool(data.date));
+                }
+            })
         }
     </script>
 </body>

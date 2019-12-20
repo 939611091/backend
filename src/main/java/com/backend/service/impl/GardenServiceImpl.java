@@ -67,12 +67,19 @@ public class GardenServiceImpl implements GardenService {
         return pageResult;
     }
 
+    @Override
+    public GardenVo selectById(Integer id) {
+        Garden garden = gardenMapper.selectById(id);
+        GardenVo gardenVo = assembleGardenVo(garden);
+        return gardenVo;
+    }
+
     /**
-     * Course转换成CourseVo
+     * garden转换成GardenVo
      * 用 BeanUtils.copyProperties(原对象, 目标对象) 把 Course 中的基本信息复制到 CourseVo 中
-     * 通过 Course 中的 id 获取 对应ID的信息
-     * @param course
-     * @return courseVo
+     * 通过 garden 中的 id 获取 对应ID的信息
+     * @param garden
+     * @return gardenVo
      */
     private GardenVo assembleGardenVo(Garden garden) {
         GardenVo gardenVo = new GardenVo();

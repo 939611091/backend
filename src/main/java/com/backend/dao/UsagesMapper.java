@@ -1,6 +1,7 @@
 package com.backend.dao;
 
 import com.backend.entity.Usages;
+import com.backend.vo.UsagesVo;
 
 public interface UsagesMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,7 @@ public interface UsagesMapper {
     int updateByPrimaryKeySelective(Usages record);
 
     int updateByPrimaryKey(Usages record);
+
+    //根据id查vo
+    Usages selectById(Integer id);
 }

@@ -16,4 +16,7 @@ public interface GardenService {
     int updateByPrimaryKey(Garden record);
 
     PageInfo<GardenVo> selectByMap(Map<String, Object> map, int pageNum, int pageSize);
+
+    //根据id查vo
+    GardenVo selectById(Integer id);
 }

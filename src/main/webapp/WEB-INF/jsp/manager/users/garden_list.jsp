@@ -102,7 +102,7 @@
                                                 </td>
                                                 <td class="mailbox-date">
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-default" onclick="window.location='${contextPath}/users/garden/edit?id=${gardenVo.id}'">
+                                                        <button type="button" class="btn btn-default" onclick="window.location='${contextPath}/users/garden/info?id=${gardenVo.id}'">
                                                             查看果园信息
                                                         </button>
                                                         <button type="button" class="btn btn-default dropdown-toggle"

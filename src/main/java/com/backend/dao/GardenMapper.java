@@ -19,4 +19,6 @@ public interface GardenMapper {
     int updateByPrimaryKey(Garden record);
 
     List<Garden> selectByMap(Map<String, Object> map);
+
+    Garden selectById(Integer id);
 }
