@@ -88,7 +88,7 @@ CREATE TABLE `farmings` (
 
 /*Data for the table `farmings` */
 
-insert  into `farmings`(`id`,`operationId`) values (33,33),(34,34),(35,35),(36,36);
+insert  into `farmings`(`id`,`operationId`) values (34,34),(35,35),(36,36);
 
 /*Table structure for table `garden` */
 
@@ -111,7 +111,7 @@ CREATE TABLE `garden` (
 
 /*Data for the table `garden` */
 
-insert  into `garden`(`id`,`userId`,`varietyId`,`periodId`,`name`,`age`,`area`,`loc`,`address`,`lastModified`,`created`) values (5,1405619599,1,1,'果园222',12311,'123456','24.28154,109.44726','广西壮族自治区柳州市鱼峰区九头山路','2019-03-08 01:22:30','2019-03-06 01:20:40'),(6,1405619599,3,5,'guoyuan B',1,'11','24.28154,109.44726','广西壮族自治区柳州市鱼峰区九头山路','2019-03-30 01:20:48','2019-03-08 00:56:56');
+insert  into `garden`(`id`,`userId`,`varietyId`,`periodId`,`name`,`age`,`area`,`loc`,`address`,`lastModified`,`created`) values (5,1405619599,1,1,'果园222',2,'10','24.28154,109.44726','广西壮族自治区柳州市鱼峰区九头山路','2019-03-08 01:22:30','2019-03-06 01:20:40'),(6,1405619599,3,5,'guoyuan B',1,'11','24.28154,109.44726','广西壮族自治区柳州市鱼峰区九头山路','2019-03-30 01:20:48','2019-03-08 00:56:56');
 
 /*Table structure for table `garden_images` */
 
@@ -148,7 +148,7 @@ CREATE TABLE `operation` (
 
 /*Data for the table `operation` */
 
-insert  into `operation`(`id`,`gardenId`,`weatherId`,`periodId`,`time`,`date`,`lastModified`,`created`,`remarks`) values (33,5,1,1,'12:01:00','2018-12-25',NULL,'2019-03-10 01:13:00',NULL),(34,5,4,5,'12:01:00','2018-12-25',NULL,'2019-03-10 01:15:33',NULL),(35,6,5,5,'14:01:00','2015-12-25',NULL,'2019-03-10 12:45:21',NULL),(36,6,8,5,'15:01:00','2020-09-01',NULL,'2019-03-10 12:45:55',NULL);
+insert  into `operation`(`id`,`gardenId`,`weatherId`,`periodId`,`time`,`date`,`lastModified`,`created`,`remarks`) values (33,5,1,1,'12:01:00','2018-12-25',NULL,'2019-03-10 01:13:00','2019-12-20 16:40:26'),(34,5,4,5,'12:01:00','2018-12-25',NULL,'2019-03-10 01:15:33','2019-12-20 16:39:48'),(35,6,5,5,'14:01:00','2015-12-25',NULL,'2019-03-10 12:45:21','2019-12-20 16:39:50'),(36,6,8,5,'15:01:00','2020-09-01',NULL,'2019-03-10 12:45:55','2019-12-20 16:39:52');
 
 /*Table structure for table `period` */
 
@@ -187,9 +187,11 @@ CREATE TABLE `usages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `operationId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `usages` */
+
+insert  into `usages`(`id`,`operationId`) values (1,33);
 
 /*Table structure for table `usages_detail` */
 
@@ -202,9 +204,11 @@ CREATE TABLE `usages_detail` (
   `name` varchar(255) DEFAULT '' COMMENT '所使用物品名称，用户自己填写（黑斑病、红蜘蛛、生根、催花、xx化肥）',
   `dose` varchar(255) DEFAULT NULL COMMENT '使用用量:12ml 30L 10g 20kg',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `usages_detail` */
+
+insert  into `usages_detail`(`id`,`usagesId`,`reasonId`,`name`,`dose`) values (1,1,9,'苯醚甲环唑','20kg');
 
 /*Table structure for table `user` */
 
@@ -220,7 +224,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`nickName`,`avatar`,`phone`) values (1405619599,'KDWIN','https://wx.qlogo.cn/mmopen/vi_32/L9VVrMFqrzeQUqf1S8TWLcVuuKrE9kbQYibuqJumhNDfuXFWoC6ic2KaiaPqBKBZvFibVhpZicEJBicXmY1MeKHKBBCQ/132','18775931825');
+insert  into `user`(`id`,`nickName`,`avatar`,`phone`) values (1405619599,'KDWIN','https://wx.qlogo.cn/mmopen/vi_32/L9VVrMFqrzeQUqf1S8TWLcVuuKrE9kbQYibuqJumhNDfuXFWoC6ic2KaiaPqBKBZvFibVhpZicEJBicXmY1MeKHKBBCQ/132','18775931824');
 
 /*Table structure for table `user_auth` */
 
